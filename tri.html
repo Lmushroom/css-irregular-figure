@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.sj2{
+			width: 0;
+			border-top: 200px solid #09c;
+			border-right: 200px solid transparent;
+		}
+		.sj1{
+			width: 0;
+			border-top: 200px solid #09c;
+			border-left: 200px solid transparent;
+			border-right: 200px solid transparent;
+		}
+		/*有弧度的三角*/
+		.box{
+			width: 200px;
+			height: 400px;
+			background: transparent;
+		}
+		.cirle{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background: #09c;
+		}
+		.triangle{
+			width: 200px;
+			height: 200px;
+			background: #09c;
+		}
+		.a{
+			float: left;
+			width: 100px;
+			height: 200px;
+			background: #fff;
+			border-radius: 0 50% 0 0;
+		}
+		.b{
+			float: left;
+			width: 100px;
+			height: 200px;
+			background: #fff;
+			border-radius: 50% 0 0 0;
+		} 
+
+		.sj{
+			margin: 0 auto;
+			margin-top: -29px;
+			width: 0;
+			border-top: 70px solid #09c;
+			border-left: 70px solid transparent;
+			border-right: 70px solid transparent;
+		}
+		
+		/*不规则对话框*/
+		.bar {
+		  width:200px; height:20px;
+		  background-color: red;
+		}
+		.box{
+		  width:100px; height:20px;
+		  display:table-cell;
+		}
+		
+		.b1{
+		  border-radius: 0 0 50%/20px 0;
+		  background-color: white;
+		}
+		
+		.b2{
+		  border-radius: 0 0 0 50%/20px;
+		  background-color: white;
+		}
+		
+		.b3{
+		  border-radius: 50% 0 0 0;
+		  background-color:red;
+		}
+		
+		.b4{
+		  border-radius: 0 50% 0 0;
+		  background-color: red;
+		}
+		
+		.box5{
+		  width:200px; height:100px;
+		  background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<!--三角-->
+	<div class="sj2"></div>
+	<div class="sj1"></div>
+	
+	<!--有弧度的倒三角-->
+	<div class="box">
+		<div class="cirle"></div>
+		<div class="triangle">
+			<div class="a"></div>
+			<div class="b"></div>
+		</div>
+	</div>
+	
+	<!--倒三角   水滴-->
+	<div class="box">
+		<div class="cirle"></div>
+		<div class="sj"></div>
+	</div>
+	
+	<!--不规则对话框-->
+	<div class="bar">
+  		<div class="box b1"></div><div class="box b2"></div>
+	</div>
+	<div>
+	  <div class="box b3"></div><div class="box b4"></div>
+	</div>
+    <div class="box5"></div>
+</body>
+</html>

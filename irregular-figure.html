@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>不规则图形</title>
+	<style type="text/css">
+		div{margin: 10px;float: left;}
+		.shapeBox{
+			width: 900px;
+			height: 500px;
+		}
+		.circle{
+			width: 100px;
+			height: 100px;
+			background: #66CCCC;
+			border-radius: 50px;
+		}
+		/*椭圆1*/
+		.oval{
+			width: 100px;
+			height: 50px;
+			background: #66CCCC;
+			border-radius: 50px/25px;
+		}
+		/*矩形*/
+		.rect{
+			width: 100px;
+			height: 100px;
+			background: #CCFF66;
+		}
+		/*菱形*/
+		.rhombus{
+			position: relative;
+			width: 200px;
+			height: 120px;
+		}
+		.rhb1{
+			position: absolute;
+			width: 0;
+			border-right: 100px solid #CCFF66;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+		}
+		.rhb2{
+			position: absolute;
+			left: 100px;
+			width: 0;
+			border-left: 100px solid #CCFF66;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+		}
+		/*关于菱形*/
+		/*菱形我用的方法是左右两个三角相对，有其他的方法用了三角形旋转等特性也可以实现*/
+		/*平行四边形*/
+		.parallelogram{
+			position: relative;
+			width: 300px;
+			height: 120px;
+		}
+		.para_1{
+			position: absolute;
+			margin-right: -50px;
+			width: 0;
+			border-top: 100px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;			
+		}
+		.para_2{
+			position: absolute;
+			left: 50px;
+			width: 0;
+			border-bottom: 100px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;			
+		}
+		
+		/*梯形*/
+		.laddershape{
+			width: 100px;
+			border-bottom: 100px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}
+		/*关于梯形*/
+		/*梯形是由三角形演变过来的，任意一个三角形，设置容器的宽度或者高度不为0即可；*/
+		/*五边形*/
+		.pentagon{
+			position: relative;
+			width: 120px;
+			height: 120px;
+		}
+		.pen_lad{
+			position: absolute;
+			top: 50px;
+			width: 50px;
+			border-top: 50px solid #CCFF66;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+		}
+		.pen_tri{
+			position: absolute;
+			width: 0;
+			border-bottom: 50px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}		
+		/*六边形*/
+		.hexagon{	
+			position: relative;	
+			width: 200px;
+			height: 240px;
+		}
+		.he_trit{
+			position: absolute;
+			width: 0;
+			border-bottom: 50px solid #CCFF66;
+			border-left: 86.6025px solid transparent;
+			border-right: 86.6025px solid transparent;
+		}
+		.he_rect{
+			position: absolute;
+			top: 50px;
+			width: 173.205px;
+			height: 100px;
+			background: #CCFF66;
+		}
+		.he_trib{
+			position: absolute;
+			top: 150px;
+			width: 0;
+			border-top: 50px solid #CCFF66;
+			border-left: 86.6025px solid transparent;
+			border-right: 86.6025px solid transparent;
+		}
+		/*关于六边形*/
+		/*六边形由上下两个三角形，中间一个矩形组成，正六边形每个角都是120°，每条边都相等*/
+		/*八边形*/
+		.octagon{
+			position: relative;
+			width: 200px;
+			height: 240px;
+		}
+		.oct_ladt{
+			position: absolute;
+			width: 70.7106px;
+			border-bottom: 50px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}
+		.oct_rect{
+			position: absolute;
+			top: 50px;
+			width: 170.7106px;
+			height: 70.7106px;
+			background: #CCFF66;
+		}
+		.oct_ladb{
+			position: absolute;
+			top: 120.7px;
+			width: 70.7106px;
+			border-top: 50px solid #CCFF66;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}
+		/*关于八边形*/
+		/*八边形由上下两个梯形中间一个矩形组成，正八边形每条边都相等，每个内角都是135°*/
+		
+		/*不规则矩形*/
+		.irr_rect{
+			width: 100px;
+			height: 100px;
+			background: #CCFF66;
+			border-radius: 10px 20px 30px 40px/40px 15px 10px;
+		}
+		/*关于不规则矩形*/
+		/*border-radius按照顺时针方向设置值，语法为border-radius: 1-4 length|% / 1-4 length|%;我理解为前为top和bottom，后为left和right，
+		 *分别为border-top-left，border-top-right，border-bottom-right，border-bottom-left，若省略border-bottom-left，则与border-top-right相同；
+		 *若省略border-bottom-right，则与border-top-left相同，若省略border-top-right，则与border-top-left相同；border-radius的值可以设置为数值+单位，
+		 *也可以设置为百分比。*/
+		/*三角*/
+		.top_tri{
+			width: 0;
+			border-bottom: 100px solid #FF99CC;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}
+		.bot_tri{
+			width: 0;
+			border-top: 100px solid #FF99CC;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+		}
+		.left_tri{
+			width: 0;
+			border-right: 100px solid #FF99CC;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+		}
+		.ri_tri{
+			width: 0;
+			border-left: 100px solid #FF99CC;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+		}
+		/*关于三角*/
+		/*开发过程中可能会遇到各种各样的三角形，正三角，直角，各种角度的三角等等，其实明白其中的原理很轻松就能够写出各种三角形了。
+		 * 如果尖在上，就设置border-bottom，border-left，border-right就可以，border的宽度就根据需要的角度来设置就可以了；
+		 * 如果尖在下，就设置border-top，border-left，border-right，同样，border的宽度根据需要的角度来调整；
+		 * 尖在左边，就设置border-right，border-top和border-bottom，border的宽度根据需要的角度来调整；
+		 * 尖在右边，就设置border-left，border-top和border-bottom，border的宽度根据需要的角度来调整。
+		 * 实现三角形的前提是，容器的宽度要设置为0，高度不需要设置。*/
+		
+		
+		
+		/*心形*/
+		.heart{
+			position: relative;
+			width: 200px;
+			height: 240px;
+		}
+		.heart_cir1{
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background: red;
+		}
+		.heart_cir2{
+			position: absolute;
+			left: 54px;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background: red;
+		}
+		.heart_tri{
+			position: absolute;
+			top: 42px;
+			left: 2px;
+			width: 0;
+			border-top: 70px solid red;
+			border-left: 55px solid transparent;
+			border-right: 55px solid transparent;			
+		}	
+		/*关于心形*/
+		/*心形由两个圆形和一个三角形组成*/
+		
+		/*吃豆人*/
+		.beans{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			background: #FFFF00;
+			border-radius: 50%;
+		}
+		.beans_tri{
+			position: absolute;
+			top: -10px;
+			left: 40px;
+			width: 0;
+			border-right: 50px solid #fff;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+		}
+		.beans_cir{
+			position: absolute;
+			top: 15px;
+			left: 75px;
+			width: 50px;
+			height: 50px;
+			border-radius: 0 50px 0 0;
+			-webkit-transform: rotate(45deg);
+			background: #FFFF00;
+		}		
+		/*关于吃豆人*/
+		/*吃豆人是由一个圆形，一个透明的三角形组成*/
+		
+		/*对话框*/
+		.dialog{
+			position: relative;
+			width: 200px;
+			height: 200px;
+		}
+		.dialog_rect{
+			position: absolute;
+			width: 150px;
+			height: 80px;
+			background: #0099CC;
+			border-radius: 10px;
+		}
+		.dialog_tri{
+			position: absolute;
+			bottom: 80px;
+			left: 25px;
+			width: 0;
+			border-top: 20px solid #0099CC;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+		}
+		/*对话框是由一个矩形和一个三角形组成*/
+	</style>
+</head>
+<body>
+	<div class="shapeBox">
+		<!--最简单的圆-->
+		<div class="circle"></div>
+		
+		<!--椭圆-->
+		<div class="oval"></div>
+		
+		<!--最简单的矩形-->
+		<div class="rect"></div>
+		
+		<!--菱形-->
+		<div class="rhombus">
+			<div class="rhb1"></div>
+			<div class="rhb2"></div>
+		</div>
+		
+		<!--平行四边形-->
+		<div class="parallelogram">
+			<div class="para_1"></div>
+			<div class="para_2"></div>
+		</div>
+		
+		<!--梯形-->
+		<div class="laddershape"></div>
+		
+		<!--五边形-->
+		<div class="pentagon">
+			<div class="pen_tri"></div>
+			<div class="pen_lad"></div>
+		</div>
+		
+		<!--六边形-->
+		<div class="hexagon">
+			<div class="he_trit"></div>
+			<div class="he_rect"></div>
+			<div class="he_trib"></div>
+		</div>
+		
+		<!--八边形-->
+		<div class="octagon">
+			<div class="oct_ladt"></div>
+			<div class="oct_rect"></div>
+			<div class="oct_ladb"></div>
+		</div>
+		
+		<!--不规则矩形-->
+		<div class="irr_rect"></div>
+		
+		<!--正三角-->
+		<div class="top_tri"></div>
+		<div class="bot_tri"></div>
+		<div class="left_tri"></div>
+		<div class="ri_tri"></div>
+		
+		<!--心形-->
+		<div class="heart">
+			<div class="heart_cir1"></div>
+			<div class="heart_cir2"></div>
+			<div class="heart_tri"></div>
+		</div>
+		
+		<!--吃豆人-->
+		<div class="beans">
+			<div class="beans_tri"></div>
+			<div class="beans_cir"></div>
+		</div>
+		
+		<!--对话框-->
+		<div class="dialog">
+			<div class="dialog_rect"></div>
+			<div class="dialog_tri"></div>
+		</div>
+	</div>
+	
+	
+</body>
+</html>
